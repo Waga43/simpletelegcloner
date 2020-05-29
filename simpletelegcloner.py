@@ -16,9 +16,9 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf8')
 
 # config
 
-path_to_gclone = ''  # Optional
-path_to_gclone_config = ''  # Optional. Point it to the gclone .conf file.
-gclone_remote_name = 'gc' #  Default value is gc. Change it to what you have got in your gclone config.
+path_to_gclone = '/usr/bin'  # Optional
+path_to_gclone_config = '/root/.config/rclone/rclone.conf'  # Optional. Point it to the gclone .conf file.
+gclone_remote_name = 'frreq46' #  Default value is gc. Change it to what you have got in your gclone config.
 
 # telegram bot token refer to https://core.telegram.org/bots#3-how-do-i-create-a-bot
 # e.g. '123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11'
@@ -26,10 +26,10 @@ token = ''
 
 # First ID will be master ID so set it to your own id. Use /id to check your id e.g. [123456]
 # If you don't set it, the bot won't do anything except responding to /id.
-message_from_user_white_list = []
+message_from_user_white_list = [718655023]
 
-destination_folder = ""  # Destination Google drive folder ID e.g. "abcedfghijklmn"
-destination_folder_name = "My Drive"  # Name of gdrive folder, e.g. "My Drive"
+destination_folder = "1x_K2tx5NDctYAwxktw4XuFWDzBI3MvhW"  # Destination Google drive folder ID e.g. "abcedfghijklmn"
+destination_folder_name = "未整理"  # Name of gdrive folder, e.g. "My Drive"
 
 root_logger = logging.getLogger()
 root_logger.setLevel(logging.DEBUG)
@@ -180,8 +180,8 @@ def fire_save_files(context, folder_ids, title):
             command_line += ['--config',path_to_gclone_config]
         command_line += [
             "--log-file={0}-{1}.log".format('gclone', time.strftime("%Y%m%d")),
-            'gc:{'+folder_id.id+'}',
-            ('gc:{'+destination_folder+'}/' + destination_path)
+            'gclone_remote_name:{'+folder_id.id+'}',
+            ('gclone_remote_name:{'+destination_folder+'}/' + destination_path)
         ]
         
         logging.debug('command line: ' + str(command_line))
